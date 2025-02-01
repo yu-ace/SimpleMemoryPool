@@ -51,12 +51,13 @@ public class SimpleMemoryPool {
     public static void main(String[] args) {
         SimpleMemoryPool pool = new SimpleMemoryPool(1024); // 1KB池
 
+        byte[] bytes = "Hello World".getBytes();
         // 分配内存并写入数据
-        int pos1 = pool.allocate(10);
-        pool.write(pos1, "HelloWorld".getBytes());
+        int pos1 = pool.allocate(bytes.length);
+        pool.write(pos1, bytes);
 
         // 读取数据
-        byte[] data = pool.read(pos1, 10);
+        byte[] data = pool.read(pos1, bytes.length);
         System.out.println(new String(data));
     }
 }

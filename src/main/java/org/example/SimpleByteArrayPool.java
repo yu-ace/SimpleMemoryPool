@@ -38,12 +38,13 @@ public class SimpleByteArrayPool {
     public static void main(String[] args) {
         SimpleByteArrayPool pool = new SimpleByteArrayPool(1024); // 1KB池
 
+        byte[] bytes = "Hello World".getBytes();
         // 分配内存并写入数据
-        int pos1 = pool.allocate(11);
-        pool.write(pos1, "Hello World".getBytes());
+        int pos1 = pool.allocate(bytes.length);
+        pool.write(pos1, bytes);
 
         // 读取数据
-        byte[] data = pool.read(pos1, 11);
+        byte[] data = pool.read(pos1, bytes.length);
         System.out.println(new String(data)); // 输出: Hello World
     }
 }
